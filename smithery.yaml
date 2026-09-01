@@ -1,0 +1,39 @@
+# Smithery configuration for Jurisprudência TJMG
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_tjmg
+
+name: tjmg-mcp
+displayName: "Jurisprudência TJMG"
+description: >
+  Pesquise jurisprudência do **TJMG**, um dos maiores tribunais estaduais do país, direto do seu agente de IA. Pergunte pela tese ou pela situação de fato e receba acórdãos com órgão julgador, relator, data, o trecho que casou a busca e o link oficial. A mesma conexão alcança outros 16 tribunais, quando você precisa saber se o entendimento mineiro acompanha o das cortes superiores. Grátis, sem login, hospedado pela plataforma.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/tjmg-mcp
+repository: https://github.com/mcp-dir/tjmg-mcp
+
+tags:
+  - tjmg
+  - minas-gerais
+  - jurisprudencia
+  - case-law
+  - brazil
+  - tribunal-de-justica
+  - acordaos
+  - read-only
+  - no-auth
+  - free
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_tjmg
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_tjmg/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
